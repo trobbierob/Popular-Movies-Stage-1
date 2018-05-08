@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Popular Movies Stage 1</string>
+    <string name="search">Search</string>
+    <string name="error_message">Error message</string>
+    <string name="editText_text">Enter a word or phrase.</string>
+    <string name="empty_tv">The Movies Are Gone!</string>
 </resources>
