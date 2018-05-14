@@ -8,15 +8,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    TextView movieTitle;
+    TextView moviePoster;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        movieTitle = (TextView) findViewById(R.id.movie_title);
+        moviePoster = (TextView) findViewById(R.id.movie_poster);
     }
 
     @Override
@@ -34,11 +43,16 @@ public class MainActivity extends AppCompatActivity {
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             if (activeNetwork != null) { // connected to the internet
                 Log.i(TAG, "I'm Pickle Rick!");
+                new FetchMovie(movieTitle, moviePoster).execute();
             } else { // not connected to the internet
                 Log.i(TAG, "wubba lubba dub dub");
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void searchMovies(View view){
+
     }
 
 }
