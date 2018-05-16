@@ -6,6 +6,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private RecyclerView mRecyclerView;
+    private MovieAdapter mAdapter;
+
     private TextView movieTitle;
     private TextView moviePoster;
 
@@ -42,8 +47,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        movieTitle = (TextView) findViewById(R.id.movie_title);
-        moviePoster = (TextView) findViewById(R.id.movie_poster);
+        //Initialize RV
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        //Set LayoutManager
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        //TODO 1 Get Data
+
+        mRecyclerView.setAdapter(mAdapter);
+
+
+        //movieTitle = (TextView) findViewById(R.id.movie_title);
+        //moviePoster = (TextView) findViewById(R.id.movie_poster);
         //searchMovies();
     }
 
