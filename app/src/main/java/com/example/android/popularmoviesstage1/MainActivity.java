@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         movieTitle = (TextView) findViewById(R.id.movie_title);
         moviePoster = (TextView) findViewById(R.id.movie_poster);
+        //searchMovies();
     }
 
     @Override
@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
 
             // This is an empty string on purpose
+            // This will be used to pass the different sort
+            // options available
             movieQueryUrl = NetworkUtils.buildUrl("");
 
         }
@@ -126,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void searchMovies(View view){
-
+    public void searchMovies(){
+        //new MovieQueryTask().execute();
     }
 
 }
