@@ -1,6 +1,7 @@
 package com.example.android.popularmoviesstage1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,10 @@ import java.util.ArrayList;
 
 class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
-
     private static final String TAG = MovieAdapter.class.getSimpleName();
 
-    private Context mContext;
     private ArrayList<Movie> mMovieData;
+    private Context mContext;
 
     MovieAdapter(Context context, ArrayList<Movie> movieData) {
         this.mMovieData = movieData;
@@ -45,13 +45,16 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         return mMovieData.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView mMovieTitle;
         private ImageView mMoviePoster;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            //Set OnClickListener to itemview
+            itemView.setOnClickListener(this);
 
             //Initialize
             mMovieTitle = (TextView) itemView.findViewById(R.id.title);
@@ -60,10 +63,20 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
         void bindTo(Movie currentMovie){
 
+            //Populate ImageView
             Glide.with(mContext).load(currentMovie.getImageResource()).into(mMoviePoster);
 
-            //Populate Title TextView
+            //Populate Title
             mMovieTitle.setText(currentMovie.getTitle());
+        }
+
+        @Override
+        public void onClick(View view) {
+            Movie currentMovie = mMovieData.get(getAdapterPosition());
+            Intent detailIntent = new Intent(mContext, DetailActivity.class);
+            detailIntent.putExtra("title", currentMovie.getTitle());
+            detailIntent.putExtra("image_resource", currentMovie.getImageResource());
+            mContext.startActivity(detailIntent);
         }
     }
 }
