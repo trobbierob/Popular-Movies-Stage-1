@@ -17,6 +17,7 @@ public final class NetworkUtils {
 
     private static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/discover/movie?";
 
+    // TODO Remember to remove API KEY
     private static final String API_KEY = "";
 
     private static final String LANGUAGE = "en-US";
