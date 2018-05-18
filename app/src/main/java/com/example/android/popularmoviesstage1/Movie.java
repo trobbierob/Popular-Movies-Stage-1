@@ -11,7 +11,9 @@ public class Movie {
 
     Movie(String title, String imageUrl) {
         this.title = title;
-        //this.imageUrl = imageUrl;
+        String BASE_URL = "http://image.tmdb.org/t/p/";
+        String BASE_SIZE = "w92";
+        this.imageUrl = BASE_URL + BASE_SIZE + imageUrl;
     }
 
     String getTitle() {

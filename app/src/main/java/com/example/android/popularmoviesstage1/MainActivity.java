@@ -177,11 +177,14 @@ public class MainActivity extends AppCompatActivity {
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
             Log.i(TAG,"Movie Array Conversion is: " + movieTitleArrayConvert);
 
+            String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
+            Log.i(TAG,"Movie Array Conversion is: " + moviePosterArrayConvert);
+
             mMovieData.clear();
 
             for (int i=0; i < movieTitleArrayConvert.length; i++){
                 //mMovieData.add(new Movie(movieTitleArrayConvert[i]));
-                mMovieData.add(new Movie(movieTitleArrayConvert[i]));
+                mMovieData.add(new Movie(movieTitleArrayConvert[i], moviePosterArrayConvert[i]));
             }
 
             mAdapter.notifyDataSetChanged();

@@ -59,6 +59,9 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         }
 
         void bindTo(Movie currentMovie){
+
+            Glide.with(mContext).load(currentMovie.getImageResource()).into(mMoviePoster);
+
             //Populate Title TextView
             mMovieTitle.setText(currentMovie.getTitle());
         }
