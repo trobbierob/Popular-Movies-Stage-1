@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mEmptyView;
 
-    public String jsonString;
-    public URL movieQueryUrl;
+    private String jsonString;
+    private URL movieQueryUrl;
     private List<String> movieTitleArray = new ArrayList<String>();
     private ArrayList<String> moviePosterArray = new ArrayList<String>();
 

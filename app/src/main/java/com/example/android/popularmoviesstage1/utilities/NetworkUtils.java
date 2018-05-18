@@ -3,7 +3,6 @@ package com.example.android.popularmoviesstage1.utilities;
 import android.net.Uri;
 import android.util.Log;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -28,12 +27,14 @@ public final class NetworkUtils {
 
     private static final String FILE_PATH = "";
 
+    /**
     static String getMovieInfo(String string){
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String movieJSONString = null;
         return movieJSONString;
     }
+     */
 
     public static URL buildUrl(String string) {
         Uri builtUri = Uri.parse(BASE_MOVIE_URL).buildUpon()
