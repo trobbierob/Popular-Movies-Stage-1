@@ -12,7 +12,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +24,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,15 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter mAdapter;
     private ArrayList<Movie> mMovieData;
 
-    private TextView movieTitle;
-    private TextView moviePoster;
-
     private TextView mEmptyView;
+
     public String jsonString;
     public URL movieQueryUrl;
-    private ListView listView;
-    private ArrayList<HashMap<String, String>> movieList;
-    //private ArrayList<String> movieTitleArray = new ArrayList<String>();
     private List<String> movieTitleArray = new ArrayList<String>();
     private ArrayList<String> moviePosterArray = new ArrayList<String>();
 
@@ -66,13 +59,8 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MovieAdapter(this,mMovieData);
         mRecyclerView.setAdapter(mAdapter);
 
-
-        // Load movies at startup
-        new MovieQueryTask().execute();
-
-        //movieTitle = (TextView) findViewById(R.id.movie_title);
-        //moviePoster = (TextView) findViewById(R.id.movie_poster);
-        //searchMovies();
+        //Load movies at startup
+        searchMovies();
 
         //Swipe, Drag & Drop
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper
@@ -88,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
             }
         });
-
         helper.attachToRecyclerView(mRecyclerView);
     }
 
@@ -119,19 +106,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public class MovieQueryTask extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected void onPreExecute() {
-
             // This is an empty string on purpose
             // This will be used to pass the different sort
             // options available
             movieQueryUrl = NetworkUtils.buildUrl("");
-
         }
-
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -174,16 +157,13 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG,"movieTitleArray is: " + movieTitleArray);
             Log.i(TAG,"moviePosterArray is: " + moviePosterArray);
 
+            //This will convert the ArrayList to String[]s
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
-            Log.i(TAG,"Movie Array Conversion is: " + movieTitleArrayConvert);
-
             String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
-            Log.i(TAG,"Movie Array Conversion is: " + moviePosterArrayConvert);
 
             mMovieData.clear();
 
             for (int i=0; i < movieTitleArrayConvert.length; i++){
-                //mMovieData.add(new Movie(movieTitleArrayConvert[i]));
                 mMovieData.add(new Movie(movieTitleArrayConvert[i], moviePosterArrayConvert[i]));
             }
 
@@ -192,6 +172,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchMovies(){
-        //new MovieQueryTask().execute();
+        new MovieQueryTask().execute();
     }
 }
