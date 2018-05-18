@@ -1,11 +1,13 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
@@ -20,9 +22,10 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="@string/title_placeholder"
-            android:layout_alignBottom="@id/movieImage"
+            android:textColor="@color/colorPrimary"
+            tools:text="Title"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private MovieAdapter mAdapter;
+    private ArrayList<Movie> mMovieData;
 
     private TextView movieTitle;
     private TextView moviePoster;
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     public URL movieQueryUrl;
     private ListView listView;
     private ArrayList<HashMap<String, String>> movieList;
+    //private ArrayList<String> movieTitleArray = new ArrayList<String>();
+    private List<String> movieTitleArray = new ArrayList<String>();
+    private ArrayList<String> moviePosterArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +59,37 @@ public class MainActivity extends AppCompatActivity {
         //Set LayoutManager
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Initialize ArrayList
+        mMovieData = new ArrayList<>();
 
-        //TODO 1 Get Data
-
+        //Initialize Adapter and set it to RecyclerView
+        mAdapter = new MovieAdapter(this,mMovieData);
         mRecyclerView.setAdapter(mAdapter);
 
+
+        // Load movies at startup
+        new MovieQueryTask().execute();
 
         //movieTitle = (TextView) findViewById(R.id.movie_title);
         //moviePoster = (TextView) findViewById(R.id.movie_poster);
         //searchMovies();
+
+        //Swipe, Drag & Drop
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper
+                .SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                mMovieData.remove(viewHolder.getAdapterPosition());
+                mAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
+            }
+        });
+
+        helper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -82,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this,"Connected",
                         Toast.LENGTH_SHORT).show();
                 new MovieQueryTask().execute();
-                //new FetchMovie(movieTitle, moviePoster).execute();
             } else { // not connected to the internet
                 Log.i(TAG, "wubba lubba dub dub");
                 Toast.makeText(this,"Check Internet Connection",
@@ -124,8 +151,10 @@ public class MainActivity extends AppCompatActivity {
 
                         JSONObject jsonFirstResult = resultsArray.getJSONObject(i);
                         String titleString = jsonFirstResult.optString("title");
+                        movieTitleArray.add(titleString);
                         Log.i(TAG,"Title is: " + titleString);
                         String posterPath = jsonFirstResult.optString("poster_path");
+                        moviePosterArray.add(posterPath);
                         Log.i(TAG,"Poster Path is: " + posterPath);
                     }
 
@@ -138,15 +167,28 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+
+            Log.i(TAG,"movieTitleArray is: " + movieTitleArray);
+            Log.i(TAG,"moviePosterArray is: " + moviePosterArray);
+
+            String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
+            Log.i(TAG,"Movie Array Conversion is: " + movieTitleArrayConvert);
+
+            mMovieData.clear();
+
+            for (int i=0; i < movieTitleArrayConvert.length; i++){
+                //mMovieData.add(new Movie(movieTitleArrayConvert[i]));
+                mMovieData.add(new Movie(movieTitleArrayConvert[i]));
+            }
+
+            mAdapter.notifyDataSetChanged();
         }
     }
 
     public void searchMovies(){
         //new MovieQueryTask().execute();
     }
-
 }

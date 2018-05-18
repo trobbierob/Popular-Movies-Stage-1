@@ -9,8 +9,17 @@ public class Movie {
         this.title = title;
     }
 
+    Movie(String title, String imageUrl) {
+        this.title = title;
+        //this.imageUrl = imageUrl;
+    }
+
     String getTitle() {
         return title;
+    }
+
+    public String getImageResource() {
+        return imageUrl;
     }
 
 }
