@@ -24,6 +24,7 @@
             android:padding="8dp"
             android:textColor="@color/colorPrimary"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+            android:layout_below="@id/detail_movieImage"
             tools:text="Title" />
 
         <TextView
@@ -34,6 +35,7 @@
             android:padding="8dp"
             android:textColor="@color/colorPrimary"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+            android:layout_below="@id/detail_title"
             tools:text="Synopsis" />
 
         <TextView
@@ -44,6 +46,7 @@
             android:padding="8dp"
             android:textColor="@color/colorPrimary"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+            android:layout_below="@id/detail_synopsis"
             tools:text="User Rating" />
 
         <TextView
@@ -54,6 +57,7 @@
             android:padding="8dp"
             android:textColor="@color/colorPrimary"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+            android:layout_below="@id/detail_user_rating"
             tools:text="Release Date" />
 
     </RelativeLayout>

@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private URL movieQueryUrl;
     private List<String> movieTitleArray = new ArrayList<String>();
     private ArrayList<String> moviePosterArray = new ArrayList<String>();
+    private ArrayList<String> moviePopularityArray = new ArrayList<String>();
+    private ArrayList<String> movieOverviewArray = new ArrayList<String>();
+    private ArrayList<String> movieReleaseDateArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,9 +139,22 @@ public class MainActivity extends AppCompatActivity {
                         String titleString = jsonFirstResult.optString("title");
                         movieTitleArray.add(titleString);
                         Log.i(TAG,"Title is: " + titleString);
+
                         String posterPath = jsonFirstResult.optString("poster_path");
                         moviePosterArray.add(posterPath);
                         Log.i(TAG,"Poster Path is: " + posterPath);
+
+                        String popularityPath = jsonFirstResult.optString("popularity");
+                        moviePopularityArray.add(popularityPath);
+                        Log.i(TAG,"Popularity Path is: " + popularityPath);
+
+                        String overview = jsonFirstResult.optString("overview");
+                        movieOverviewArray.add(overview);
+                        Log.i(TAG,"Overview is: " + overview);
+
+                        String releaseDate = jsonFirstResult.optString("release_date");
+                        movieReleaseDateArray.add(releaseDate);
+                        Log.i(TAG,"Release Date is: " + releaseDate);
                     }
 
                 } catch (IOException e) {
@@ -161,10 +177,15 @@ public class MainActivity extends AppCompatActivity {
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
             String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
 
+            String [] moviePopularityArrayConvert = moviePopularityArray.toArray(new String[moviePopularityArray.size()]);
+            String [] movieOverviewArrayConvert = movieOverviewArray.toArray(new String[movieOverviewArray.size()]);
+            String [] movieReleaseDateArrayConvert = movieReleaseDateArray.toArray(new String[movieReleaseDateArray.size()]);
+
             mMovieData.clear();
 
             for (int i=0; i < movieTitleArrayConvert.length; i++){
-                mMovieData.add(new Movie(movieTitleArrayConvert[i], moviePosterArrayConvert[i]));
+                mMovieData.add(new Movie(movieTitleArrayConvert[i], moviePosterArrayConvert[i],
+                        moviePopularityArrayConvert[i], movieOverviewArrayConvert[i], movieReleaseDateArrayConvert[i]));
             }
 
             mAdapter.notifyDataSetChanged();
