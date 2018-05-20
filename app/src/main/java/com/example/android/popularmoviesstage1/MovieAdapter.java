@@ -72,7 +72,7 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             detailIntent.putExtra("title", currentMovie.getTitle());
             detailIntent.putExtra("image_resource", currentMovie.getImageResource());
             detailIntent.putExtra("overview", currentMovie.getOverview());
-            detailIntent.putExtra("user_rating", currentMovie.getPopularity());
+            detailIntent.putExtra("user_rating", currentMovie.getVoteAverage());
             detailIntent.putExtra("release_date", currentMovie.getReleaseDate());
             mContext.startActivity(detailIntent);
         }

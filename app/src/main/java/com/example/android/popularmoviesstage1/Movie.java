@@ -5,7 +5,7 @@ public class Movie {
     private String title;
     private String imageUrl;
 
-    private String popularity;
+    private String voteAverage;
     private String overview;
     private String releaseDate;
 
@@ -13,14 +13,14 @@ public class Movie {
         this.title = title;
     }
 
-    Movie(String title, String imageUrl, String popularity, String overview, String releaseDate) {
+    Movie(String title, String imageUrl, String voteAverage, String overview, String releaseDate) {
         this.title = title;
 
         String BASE_URL = "http://image.tmdb.org/t/p/";
         String BASE_SIZE = "w500";
         this.imageUrl = BASE_URL + BASE_SIZE + imageUrl;
 
-        this.popularity = popularity;
+        this.voteAverage = voteAverage;
 
         this.overview = overview;
 
@@ -35,8 +35,8 @@ public class Movie {
         return imageUrl;
     }
 
-    String getPopularity() {
-        return popularity;
+    String getVoteAverage() {
+        return voteAverage;
     }
 
     String getOverview() {

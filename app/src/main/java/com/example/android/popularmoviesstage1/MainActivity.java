@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private URL movieQueryUrl;
     private List<String> movieTitleArray = new ArrayList<String>();
     private ArrayList<String> moviePosterArray = new ArrayList<String>();
-    private ArrayList<String> moviePopularityArray = new ArrayList<String>();
+    private ArrayList<String> movieVoteAverageArray = new ArrayList<String>();
     private ArrayList<String> movieOverviewArray = new ArrayList<String>();
     private ArrayList<String> movieReleaseDateArray = new ArrayList<String>();
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemSelected = item.getItemId();
-        if (menuItemSelected == R.id.action_bar_search) {
+        if (menuItemSelected == R.id.action_bar_popular) {
             ConnectivityManager cm = (ConnectivityManager)
                     MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -103,6 +103,20 @@ public class MainActivity extends AppCompatActivity {
                 new MovieQueryTask().execute();
             } else { // not connected to the internet
                 Log.i(TAG, "wubba lubba dub dub");
+                Toast.makeText(this,"Check Internet Connection",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else if(menuItemSelected == R.id.action_bar_top_rated){
+            ConnectivityManager cm = (ConnectivityManager)
+                    MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            if (activeNetwork != null) { // connected to the internet
+                Log.i(TAG, "I'm Tiny Rick!");
+                Toast.makeText(this,"Connected",
+                        Toast.LENGTH_SHORT).show();
+                new MovieQueryTask().execute();
+            } else { // not connected to the internet
+                Log.i(TAG, "Remember to square your shoulders, Jerry.");
                 Toast.makeText(this,"Check Internet Connection",
                         Toast.LENGTH_SHORT).show();
             }
@@ -145,9 +159,9 @@ public class MainActivity extends AppCompatActivity {
                         moviePosterArray.add(posterPath);
                         Log.i(TAG,"Poster Path is: " + posterPath);
 
-                        String popularityPath = jsonFirstResult.optString("popularity");
-                        moviePopularityArray.add(popularityPath);
-                        Log.i(TAG,"Popularity Path is: " + popularityPath);
+                        String voteAveragePath = jsonFirstResult.optString("vote_average");
+                        movieVoteAverageArray.add(voteAveragePath);
+                        Log.i(TAG,"Vote Average is: " + voteAveragePath);
 
                         String overview = jsonFirstResult.optString("overview");
                         movieOverviewArray.add(overview);
@@ -174,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             //This will convert the ArrayList to String[]s
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
             String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
-            String [] moviePopularityArrayConvert = moviePopularityArray.toArray(new String[moviePopularityArray.size()]);
+            String [] movieVoteAverageArrayConvert = movieVoteAverageArray.toArray(new String[movieVoteAverageArray.size()]);
             String [] movieOverviewArrayConvert = movieOverviewArray.toArray(new String[movieOverviewArray.size()]);
             String [] movieReleaseDateArrayConvert = movieReleaseDateArray.toArray(new String[movieReleaseDateArray.size()]);
 
@@ -182,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i=0; i < movieTitleArrayConvert.length; i++){
                 mMovieData.add(new Movie(movieTitleArrayConvert[i], moviePosterArrayConvert[i],
-                        moviePopularityArrayConvert[i], movieOverviewArrayConvert[i], movieReleaseDateArrayConvert[i]));
+                        movieVoteAverageArrayConvert[i], movieOverviewArrayConvert[i], movieReleaseDateArrayConvert[i]));
             }
 
             mAdapter.notifyDataSetChanged();
