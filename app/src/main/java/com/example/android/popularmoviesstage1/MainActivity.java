@@ -171,13 +171,9 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            Log.i(TAG,"movieTitleArray is: " + movieTitleArray);
-            Log.i(TAG,"moviePosterArray is: " + moviePosterArray);
-
             //This will convert the ArrayList to String[]s
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
             String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
-
             String [] moviePopularityArrayConvert = moviePopularityArray.toArray(new String[moviePopularityArray.size()]);
             String [] movieOverviewArrayConvert = movieOverviewArray.toArray(new String[movieOverviewArray.size()]);
             String [] movieReleaseDateArrayConvert = movieReleaseDateArray.toArray(new String[movieReleaseDateArray.size()]);

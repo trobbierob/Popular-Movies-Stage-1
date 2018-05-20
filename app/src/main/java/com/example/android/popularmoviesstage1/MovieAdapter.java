@@ -56,18 +56,13 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             //Set OnClickListener to itemview
             itemView.setOnClickListener(this);
 
-            //Initialize
-            mMovieTitle = (TextView) itemView.findViewById(R.id.title);
+            //Initialize Poster
             mMoviePoster = (ImageView) itemView.findViewById(R.id.movieImage);
         }
 
         void bindTo(Movie currentMovie){
-
             //Populate ImageView
             Glide.with(mContext).load(currentMovie.getImageResource()).into(mMoviePoster);
-
-            //Populate Title
-            mMovieTitle.setText(currentMovie.getTitle());
         }
 
         @Override
@@ -79,7 +74,6 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             detailIntent.putExtra("overview", currentMovie.getOverview());
             detailIntent.putExtra("user_rating", currentMovie.getPopularity());
             detailIntent.putExtra("release_date", currentMovie.getReleaseDate());
-
             mContext.startActivity(detailIntent);
         }
     }

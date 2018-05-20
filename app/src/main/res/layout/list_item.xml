@@ -1,7 +1,6 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp">
 
     <LinearLayout
@@ -14,17 +13,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/movieImage"
             android:adjustViewBounds="true"/>
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/title_placeholder"
-            android:textColor="@color/colorPrimary"
-            tools:text="Title"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"/>
 
     </LinearLayout>
 

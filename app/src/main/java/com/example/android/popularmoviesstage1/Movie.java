@@ -17,7 +17,7 @@ public class Movie {
         this.title = title;
 
         String BASE_URL = "http://image.tmdb.org/t/p/";
-        String BASE_SIZE = "w92";
+        String BASE_SIZE = "w500";
         this.imageUrl = BASE_URL + BASE_SIZE + imageUrl;
 
         this.popularity = popularity;

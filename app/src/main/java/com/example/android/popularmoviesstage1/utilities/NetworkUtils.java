@@ -27,15 +27,6 @@ public final class NetworkUtils {
 
     private static final String FILE_PATH = "";
 
-    /**
-    static String getMovieInfo(String string){
-        HttpURLConnection urlConnection = null;
-        BufferedReader reader = null;
-        String movieJSONString = null;
-        return movieJSONString;
-    }
-     */
-
     public static URL buildUrl(String string) {
         Uri builtUri = Uri.parse(BASE_MOVIE_URL).buildUpon()
                 .appendQueryParameter("api_key", API_KEY)
