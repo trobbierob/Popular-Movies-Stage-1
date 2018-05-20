@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemSelected = item.getItemId();
-        if (menuItemSelected == R.id.action_bar_search) {
+        if (menuItemSelected == R.id.action_bar_popular) {
             ConnectivityManager cm = (ConnectivityManager)
                     MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -103,6 +103,20 @@ public class MainActivity extends AppCompatActivity {
                 new MovieQueryTask().execute();
             } else { // not connected to the internet
                 Log.i(TAG, "wubba lubba dub dub");
+                Toast.makeText(this,"Check Internet Connection",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else if(menuItemSelected == R.id.action_bar_top_rated){
+            ConnectivityManager cm = (ConnectivityManager)
+                    MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            if (activeNetwork != null) { // connected to the internet
+                Log.i(TAG, "I'm Tiny Rick!");
+                Toast.makeText(this,"Connected",
+                        Toast.LENGTH_SHORT).show();
+                new MovieQueryTask().execute();
+            } else { // not connected to the internet
+                Log.i(TAG, "Remember to square your shoulders, Jerry.");
                 Toast.makeText(this,"Check Internet Connection",
                         Toast.LENGTH_SHORT).show();
             }

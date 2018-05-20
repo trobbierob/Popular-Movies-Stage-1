@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Popular Movies Stage 1</string>
-    <string name="search">Search</string>
+    <string name="popular">Popular</string>
     <string name="error_message">Error message</string>
     <string name="empty_tv">The Movies Are Gone!</string>
     <string name="title_placeholder">Title</string>
+    <string name="top_rated">Top Rated</string>
 </resources>
