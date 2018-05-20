@@ -4,14 +4,9 @@ public class Movie {
 
     private String title;
     private String imageUrl;
-
     private String voteAverage;
     private String overview;
     private String releaseDate;
-
-    Movie(String title) {
-        this.title = title;
-    }
 
     Movie(String title, String imageUrl, String voteAverage, String overview, String releaseDate) {
         this.title = title;
@@ -21,9 +16,7 @@ public class Movie {
         this.imageUrl = BASE_URL + BASE_SIZE + imageUrl;
 
         this.voteAverage = voteAverage;
-
         this.overview = overview;
-
         this.releaseDate = releaseDate;
     }
 
@@ -31,7 +24,7 @@ public class Movie {
         return title;
     }
 
-    public String getImageResource() {
+    String getImageResource() {
         return imageUrl;
     }
 

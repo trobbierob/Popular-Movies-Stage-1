@@ -53,7 +53,7 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public ViewHolder(View itemView) {
             super(itemView);
 
-            //Set OnClickListener to itemview
+            //Set OnClickListener to itemView
             itemView.setOnClickListener(this);
 
             //Initialize Poster

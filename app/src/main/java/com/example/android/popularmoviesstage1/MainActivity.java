@@ -44,10 +44,16 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> movieOverviewArray = new ArrayList<String>();
     private ArrayList<String> movieReleaseDateArray = new ArrayList<String>();
 
+    private int SORT_BY = 0;
+    private String api_key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //API KEY
+        api_key = getResources().getString(R.string.api_key);
 
         //Initialize RV
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -100,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "I'm Pickle Rick!");
                 Toast.makeText(this,"Connected",
                         Toast.LENGTH_SHORT).show();
+                SORT_BY = 0;
                 new MovieQueryTask().execute();
             } else { // not connected to the internet
                 Log.i(TAG, "wubba lubba dub dub");
@@ -114,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "I'm Tiny Rick!");
                 Toast.makeText(this,"Connected",
                         Toast.LENGTH_SHORT).show();
+                SORT_BY = 1;
                 new MovieQueryTask().execute();
             } else { // not connected to the internet
                 Log.i(TAG, "Remember to square your shoulders, Jerry.");
@@ -128,10 +136,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            // This is an empty string on purpose
-            // This will be used to pass the different sort
-            // options available
-            movieQueryUrl = NetworkUtils.buildUrl("");
+            Log.i(TAG, "I'm Mr. Meeseeks. Look at me! SORT BY is: " + SORT_BY);
+
+            if (SORT_BY == 0){
+                movieQueryUrl = NetworkUtils.buildUrl("popularity", api_key);
+            } else {
+                movieQueryUrl = NetworkUtils.buildUrl("vote_average", api_key);
+            }
         }
 
         @Override
@@ -140,13 +151,8 @@ public class MainActivity extends AppCompatActivity {
             if (movieQueryUrl != null) {
                 try {
                     jsonString = NetworkUtils.getResponseFromHttpUrl(movieQueryUrl);
-                    Log.i(TAG, "JSON String is: " + jsonString);
-
                     JSONObject jsonRootObject = new JSONObject(jsonString);
-                    Log.i(TAG, "JSON Root is: " + jsonRootObject);
-
                     JSONArray resultsArray = jsonRootObject.optJSONArray("results");
-                    Log.i(TAG, "Results JSON String is: " + resultsArray);
 
                     for (int i = 0; i < 10; i++) {
 
@@ -185,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            //This will convert the ArrayList to String[]s
+            //This will convert the ArrayList to String[] arrays
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
             String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
             String [] movieVoteAverageArrayConvert = movieVoteAverageArray.toArray(new String[movieVoteAverageArray.size()]);
@@ -194,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
             mMovieData.clear();
 
+            //Add data into Movie
             for (int i=0; i < movieTitleArrayConvert.length; i++){
                 mMovieData.add(new Movie(movieTitleArrayConvert[i], moviePosterArrayConvert[i],
                         movieVoteAverageArrayConvert[i], movieOverviewArrayConvert[i], movieReleaseDateArrayConvert[i]));

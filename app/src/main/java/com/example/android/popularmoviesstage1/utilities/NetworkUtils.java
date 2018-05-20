@@ -16,22 +16,22 @@ public final class NetworkUtils {
 
     private static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/discover/movie?";
 
-    // TODO Remember to remove API KEY
+    /**
+     * You can use this variable to add
+     * your own api key. Just change the variable
+     * name to uppercase in the buildUrl()
+     */
     private static final String API_KEY = "";
 
     private static final String LANGUAGE = "en-US";
 
-    private static final String SORT_BY = "popularity.desc";
+    private static final String SORT_BY = ".desc";
 
-    private static final String SIZE = "";
-
-    private static final String FILE_PATH = "";
-
-    public static URL buildUrl(String string) {
+    public static URL buildUrl(String string, String api_key) {
         Uri builtUri = Uri.parse(BASE_MOVIE_URL).buildUpon()
-                .appendQueryParameter("api_key", API_KEY)
+                .appendQueryParameter("api_key", api_key)
                 .appendQueryParameter("language", LANGUAGE)
-                .appendQueryParameter("sort_by", SORT_BY)
+                .appendQueryParameter("sort_by", string+SORT_BY)
                 .appendQueryParameter("include_adult", "true")
                 .appendQueryParameter("include_video", "false")
                 .appendQueryParameter("page", "1")
@@ -48,7 +48,6 @@ public final class NetworkUtils {
 
         return url;
     }
-
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
