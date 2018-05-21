@@ -136,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            Log.i(TAG, "I'm Mr. Meeseeks. Look at me! SORT BY is: " + SORT_BY);
-
+            clearArray();
             if (SORT_BY == 0){
                 movieQueryUrl = NetworkUtils.buildUrl("popular", api_key);
             } else {
@@ -154,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonRootObject = new JSONObject(jsonString);
                     JSONArray resultsArray = jsonRootObject.optJSONArray("results");
 
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < resultsArray.length(); i++) {
 
                         JSONObject jsonFirstResult = resultsArray.getJSONObject(i);
                         String titleString = jsonFirstResult.optString("title");
@@ -210,7 +209,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void clearArray(){
+        movieTitleArray.clear();
+        moviePosterArray.clear();
+        movieVoteAverageArray.clear();
+        movieOverviewArray.clear();
+        movieReleaseDateArray.clear();
+    }
+
     public void searchMovies(){
-        //new MovieQueryTask().execute();
+        new MovieQueryTask().execute();
     }
 }
