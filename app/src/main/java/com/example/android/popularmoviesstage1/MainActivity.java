@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -103,13 +102,9 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             if (activeNetwork != null) { // connected to the internet
-                Log.i(TAG, "I'm Pickle Rick!");
-                Toast.makeText(this,"Connected",
-                        Toast.LENGTH_SHORT).show();
                 SORT_BY = 0;
                 new MovieQueryTask().execute();
             } else { // not connected to the internet
-                Log.i(TAG, "wubba lubba dub dub");
                 Toast.makeText(this,"Check Internet Connection",
                         Toast.LENGTH_SHORT).show();
             }
@@ -118,13 +113,9 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             if (activeNetwork != null) { // connected to the internet
-                Log.i(TAG, "I'm Tiny Rick!");
-                Toast.makeText(this,"Connected",
-                        Toast.LENGTH_SHORT).show();
                 SORT_BY = 1;
                 new MovieQueryTask().execute();
             } else { // not connected to the internet
-                Log.i(TAG, "Remember to square your shoulders, Jerry.");
                 Toast.makeText(this,"Check Internet Connection",
                         Toast.LENGTH_SHORT).show();
             }
@@ -158,23 +149,18 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonFirstResult = resultsArray.getJSONObject(i);
                         String titleString = jsonFirstResult.optString("title");
                         movieTitleArray.add(titleString);
-                        Log.i(TAG,"Title is: " + titleString);
 
                         String posterPath = jsonFirstResult.optString("poster_path");
                         moviePosterArray.add(posterPath);
-                        Log.i(TAG,"Poster Path is: " + posterPath);
 
                         String voteAveragePath = jsonFirstResult.optString("vote_average");
                         movieVoteAverageArray.add(voteAveragePath);
-                        Log.i(TAG,"Vote Average is: " + voteAveragePath);
 
                         String overview = jsonFirstResult.optString("overview");
                         movieOverviewArray.add(overview);
-                        Log.i(TAG,"Overview is: " + overview);
 
                         String releaseDate = jsonFirstResult.optString("release_date");
                         movieReleaseDateArray.add(releaseDate);
-                        Log.i(TAG,"Release Date is: " + releaseDate);
                     }
 
                 } catch (IOException e) {
