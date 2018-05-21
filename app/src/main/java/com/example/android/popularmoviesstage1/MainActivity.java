@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private URL movieQueryUrl;
     private List<String> movieTitleArray = new ArrayList<String>();
     private ArrayList<String> moviePosterArray = new ArrayList<String>();
+    private ArrayList<String> movieBackdropArray = new ArrayList<String>();
     private ArrayList<String> movieVoteAverageArray = new ArrayList<String>();
     private ArrayList<String> movieOverviewArray = new ArrayList<String>();
     private ArrayList<String> movieReleaseDateArray = new ArrayList<String>();
@@ -153,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
                         String posterPath = jsonFirstResult.optString("poster_path");
                         moviePosterArray.add(posterPath);
 
+                        String backdropPath = jsonFirstResult.optString("backdrop_path");
+                        movieBackdropArray.add(backdropPath);
+
                         String voteAveragePath = jsonFirstResult.optString("vote_average");
                         movieVoteAverageArray.add(voteAveragePath);
 
@@ -179,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
             //This will convert the ArrayList to String[] arrays
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
             String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
+            String [] movieBackdropArrayConvert = movieBackdropArray.toArray(new String[movieBackdropArray.size()]);
             String [] movieVoteAverageArrayConvert = movieVoteAverageArray.toArray(new String[movieVoteAverageArray.size()]);
             String [] movieOverviewArrayConvert = movieOverviewArray.toArray(new String[movieOverviewArray.size()]);
             String [] movieReleaseDateArrayConvert = movieReleaseDateArray.toArray(new String[movieReleaseDateArray.size()]);
@@ -188,7 +193,8 @@ public class MainActivity extends AppCompatActivity {
             //Add data into Movie
             for (int i=0; i < movieTitleArrayConvert.length; i++){
                 mMovieData.add(new Movie(movieTitleArrayConvert[i], moviePosterArrayConvert[i],
-                        movieVoteAverageArrayConvert[i], movieOverviewArrayConvert[i], movieReleaseDateArrayConvert[i]));
+                        movieVoteAverageArrayConvert[i], movieOverviewArrayConvert[i],
+                        movieReleaseDateArrayConvert[i], movieBackdropArrayConvert[i]));
             }
 
             mAdapter.notifyDataSetChanged();
@@ -198,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearArray(){
         movieTitleArray.clear();
         moviePosterArray.clear();
+        movieBackdropArray.clear();
         movieVoteAverageArray.clear();
         movieOverviewArray.clear();
         movieReleaseDateArray.clear();

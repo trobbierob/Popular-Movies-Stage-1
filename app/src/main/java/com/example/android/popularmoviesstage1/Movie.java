@@ -7,8 +7,9 @@ public class Movie {
     private String voteAverage;
     private String overview;
     private String releaseDate;
+    private String backdrop;
 
-    Movie(String title, String imageUrl, String voteAverage, String overview, String releaseDate) {
+    Movie(String title, String imageUrl, String voteAverage, String overview, String releaseDate, String backdrop) {
         this.title = title;
 
         String BASE_URL = "http://image.tmdb.org/t/p/";
@@ -18,6 +19,7 @@ public class Movie {
         this.voteAverage = voteAverage;
         this.overview = overview;
         this.releaseDate = releaseDate;
+        this.backdrop = backdrop;
     }
 
     String getTitle() {
@@ -38,6 +40,10 @@ public class Movie {
 
     String getReleaseDate() {
         return releaseDate;
+    }
+
+    String getBackdrop() {
+        return backdrop;
     }
 
 }

@@ -24,7 +24,7 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
 
         movieTitle.setText(getIntent().getStringExtra("title"));
-        Glide.with(this).load(getIntent().getStringExtra("image_resource")).into(movieImage);
+        Glide.with(this).load(getIntent().getStringExtra("backdrop")).into(movieImage);
         movieSynopsis.setText(getIntent().getStringExtra("overview"));
         movieRating.setText(getIntent().getStringExtra("user_rating"));
         movieReleaseDate.setText(getIntent().getStringExtra("release_date"));
