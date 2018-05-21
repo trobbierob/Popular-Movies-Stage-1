@@ -1,68 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
     tools:context=".DetailActivity">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/detail_movieImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/photo" />
 
-        <ImageView
-            android:id="@+id/detail_movieImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/photo"/>
 
-        <TextView
-            android:id="@+id/detail_title"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="@color/colorPrimary"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-            android:layout_below="@id/detail_movieImage"
-            tools:text="Title" />
+    <TextView
+        android:id="@+id/detail_title"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_movieImage"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintBottom_toTopOf="@+id/detail_synopsis"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title" />
 
-        <TextView
-            android:id="@+id/detail_synopsis"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="@color/colorPrimary"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-            android:layout_below="@id/detail_title"
-            tools:text="Synopsis" />
+    <TextView
+        android:id="@+id/detail_synopsis"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_title"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintBottom_toTopOf="@+id/detail_user_rating"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Synopsis" />
 
-        <TextView
-            android:id="@+id/detail_user_rating"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="@color/colorPrimary"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-            android:layout_below="@id/detail_synopsis"
-            tools:text="User Rating" />
 
-        <TextView
-            android:id="@+id/detail_release_date"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="@color/colorPrimary"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-            android:layout_below="@id/detail_user_rating"
-            tools:text="Release Date" />
+    <TextView
+        android:id="@+id/detail_user_rating"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_synopsis"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="254dp"
+        tools:text="User Rating" />
 
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/detail_release_date"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_user_rating"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="254dp"
+        tools:text="Release Date" />
 
-</ScrollView>
+</android.support.constraint.ConstraintLayout>
 
 

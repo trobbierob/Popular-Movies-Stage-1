@@ -21,6 +21,8 @@ public class DetailActivity extends AppCompatActivity {
         TextView movieRating = (TextView) findViewById(R.id.detail_user_rating);
         TextView movieReleaseDate = (TextView) findViewById(R.id.detail_release_date);
 
+        getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+
         movieTitle.setText(getIntent().getStringExtra("title"));
         Glide.with(this).load(getIntent().getStringExtra("image_resource")).into(movieImage);
         movieSynopsis.setText(getIntent().getStringExtra("overview"));
