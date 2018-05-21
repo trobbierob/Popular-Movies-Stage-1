@@ -14,7 +14,7 @@ public final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
-    private static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/discover/movie?";
+    private static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/movie/";
 
     /**
      * You can use this variable to add
@@ -28,13 +28,9 @@ public final class NetworkUtils {
     private static final String SORT_BY = ".desc";
 
     public static URL buildUrl(String string, String api_key) {
-        Uri builtUri = Uri.parse(BASE_MOVIE_URL).buildUpon()
+        Uri builtUri = Uri.parse(BASE_MOVIE_URL + string).buildUpon()
                 .appendQueryParameter("api_key", api_key)
                 .appendQueryParameter("language", LANGUAGE)
-                .appendQueryParameter("sort_by", string+SORT_BY)
-                .appendQueryParameter("include_adult", "true")
-                .appendQueryParameter("include_video", "false")
-                .appendQueryParameter("page", "1")
                 .build();
 
         URL url = null;

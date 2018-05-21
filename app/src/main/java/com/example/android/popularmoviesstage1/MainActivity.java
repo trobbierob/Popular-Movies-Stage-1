@@ -139,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "I'm Mr. Meeseeks. Look at me! SORT BY is: " + SORT_BY);
 
             if (SORT_BY == 0){
-                movieQueryUrl = NetworkUtils.buildUrl("popularity", api_key);
+                movieQueryUrl = NetworkUtils.buildUrl("popular", api_key);
             } else {
-                movieQueryUrl = NetworkUtils.buildUrl("vote_average", api_key);
+                movieQueryUrl = NetworkUtils.buildUrl("top_rated", api_key);
             }
         }
 
@@ -211,6 +211,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchMovies(){
-        new MovieQueryTask().execute();
+        //new MovieQueryTask().execute();
     }
 }
