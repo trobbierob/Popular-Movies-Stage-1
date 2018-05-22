@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,79 +7,116 @@
     android:background="@color/colorPrimary"
     tools:context=".DetailActivity">
 
-    <ImageView
-        android:id="@+id/detail_movieImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/photo" />
 
-
-    <TextView
-        android:id="@+id/detail_title"
-        style="@style/TextAppearance.AppCompat.Headline"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/detail_movieImage"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:textColor="@color/colorPrimary"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-        app:layout_constraintBottom_toTopOf="@+id/detail_synopsis"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
-
-    <TextView
-        android:id="@+id/detail_synopsis"
-        style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/detail_title"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:padding="8dp"
-        android:textColor="@color/colorPrimary"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-        app:layout_constraintBottom_toTopOf="@+id/detail_user_rating"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Synopsis" />
+        android:layout_height="wrap_content">
 
 
-    <TextView
-        android:id="@+id/detail_user_rating"
-        style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/detail_synopsis"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:padding="8dp"
-        android:textColor="@color/colorPrimary"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="254dp"
-        tools:text="User Rating" />
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/detail_release_date"
-        style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/detail_user_rating"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:padding="8dp"
-        android:textColor="@color/colorPrimary"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="254dp"
-        tools:text="Release Date" />
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-</android.support.constraint.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/detail_movieImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/photo" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:id="@+id/detail_title"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_movieImage"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+                    tools:text="Title" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:id="@+id/detail_synopsis"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_title"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+                    tools:text="Synopsis" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+
+                <TextView
+                    android:id="@+id/detail_user_rating"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_synopsis"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+                    tools:text="User Rating" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:id="@+id/detail_release_date"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_user_rating"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+                    tools:text="Release Date" />
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </ScrollView>
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
 
 

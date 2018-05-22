@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -156,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
                         String backdropPath = jsonFirstResult.optString("backdrop_path");
                         movieBackdropArray.add(backdropPath);
+                        Log.i(TAG,"backdrop is: " + movieBackdropArray);
 
                         String voteAveragePath = jsonFirstResult.optString("vote_average");
                         movieVoteAverageArray.add(voteAveragePath);
@@ -184,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
             String [] movieTitleArrayConvert = movieTitleArray.toArray(new String[movieTitleArray.size()]);
             String [] moviePosterArrayConvert = moviePosterArray.toArray(new String[moviePosterArray.size()]);
             String [] movieBackdropArrayConvert = movieBackdropArray.toArray(new String[movieBackdropArray.size()]);
+            Log.i(TAG,"backdrop is: " + movieBackdropArrayConvert);
             String [] movieVoteAverageArrayConvert = movieVoteAverageArray.toArray(new String[movieVoteAverageArray.size()]);
             String [] movieOverviewArrayConvert = movieOverviewArray.toArray(new String[movieOverviewArray.size()]);
             String [] movieReleaseDateArrayConvert = movieReleaseDateArray.toArray(new String[movieReleaseDateArray.size()]);

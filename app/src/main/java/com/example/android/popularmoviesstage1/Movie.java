@@ -19,7 +19,10 @@ public class Movie {
         this.voteAverage = voteAverage;
         this.overview = overview;
         this.releaseDate = releaseDate;
-        this.backdrop = backdrop;
+
+        String BASE_URL_BACKDROP = "http://image.tmdb.org/t/p/";
+        String BASE_SIZE_BACKDROP = "w500";
+        this.backdrop = BASE_URL_BACKDROP + BASE_SIZE_BACKDROP + backdrop;
     }
 
     String getTitle() {
