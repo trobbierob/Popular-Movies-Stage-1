@@ -16,6 +16,7 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView movieTitle = (TextView) findViewById(R.id.detail_title);
         ImageView movieImage = (ImageView) findViewById(R.id.detail_movieImage);
+        ImageView backdropImage = (ImageView) findViewById(R.id.detail_backdrop);
 
         TextView movieSynopsis = (TextView) findViewById(R.id.detail_synopsis);
         TextView movieRating = (TextView) findViewById(R.id.detail_user_rating);
@@ -24,9 +25,10 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
 
         movieTitle.setText(getIntent().getStringExtra("title"));
-        Glide.with(this).load(getIntent().getStringExtra("backdrop")).into(movieImage);
+        Glide.with(this).load(getIntent().getStringExtra("image_resource")).into(movieImage);
+        Glide.with(this).load(getIntent().getStringExtra("backdrop")).into(backdropImage);
         movieSynopsis.setText(getIntent().getStringExtra("overview"));
-        movieRating.setText(getIntent().getStringExtra("user_rating"));
-        movieReleaseDate.setText(getIntent().getStringExtra("release_date"));
+        movieRating.setText(getString(R.string.user_rating) + getIntent().getStringExtra("user_rating"));
+        movieReleaseDate.setText(getString(R.string.release_date) + getIntent().getStringExtra("release_date"));
     }
 }
