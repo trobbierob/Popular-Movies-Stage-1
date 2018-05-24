@@ -31,4 +31,5 @@ public class DetailActivity extends AppCompatActivity {
         movieRating.setText(getString(R.string.user_rating) + getIntent().getStringExtra("user_rating"));
         movieReleaseDate.setText(getString(R.string.release_date) + getIntent().getStringExtra("release_date"));
     }
+
 }
