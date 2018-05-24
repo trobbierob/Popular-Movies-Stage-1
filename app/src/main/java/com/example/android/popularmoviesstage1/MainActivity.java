@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -203,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearArray(){
+        //Clear data in array so that the views refresh when switching the sort order
         movieTitleArray.clear();
         moviePosterArray.clear();
         movieBackdropArray.clear();
